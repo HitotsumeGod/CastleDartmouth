@@ -3,8 +3,9 @@ import java.util.ArrayList;
 class RoomLib extends ArrayList<Room> {
 
 	RoomLib() {
-
-		this.add(new Room().RoomBuilder().addItem(ItemLib.getInstance().getItem(0)).build());
+		
+		ItemLib il = ItemLib.getInstance();
+		this.add(new Room.RoomBuilder("yourroom").addItem(il.getItem(0)).addItem(il.getItem(1)).build());
 
 	} 
 
