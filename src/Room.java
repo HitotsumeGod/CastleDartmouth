@@ -39,7 +39,7 @@ class Room {
 		}
 		public RoomBuilder addItem(Item item) {
 
-			this.items.add(item);
+			items.add(item);
 			return this;
 
 		}
