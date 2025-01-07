@@ -3,14 +3,41 @@ import java.util.ArrayList;
 class Room {
 
 
-	private ArrayList<Item> items;
+	private ArrayList<Item> items = new ArrayList<>();
 	private String name;
 
-	private Room(RoomBuilder rb) {
+	public Room(String name, Item item1) {
 	
-		this.items = rb.items;
-		this.name = rb.name;
+		this.name = name;
+		this.items.add(item1);
 	
+	} 
+
+	public Room(String name, Item item1, Item item2) {
+
+		this.name = name;
+		this.items.add(item1);
+		this.items.add(item2);	
+
+	}
+
+   	public Room(String name, Item item1, Item item2, Item item3) {
+		
+		this.name = name;
+		this.items.add(item1);
+		this.items.add(item2);
+		this.items.add(item3);
+
+	}
+
+	public Room(String name, Item item1, Item item2, Item item3, Item item4) {
+		
+		this.name = name;
+		this.items.add(item1);
+		this.items.add(item2);
+		this.items.add(item3);
+		this.items.add(item4);
+
 	}
 
 	public String getName() {
@@ -25,32 +52,4 @@ class Room {
 			System.out.println(item.getName());
 
 	}
-
-	public static class RoomBuilder {
-		
-		private ArrayList<Item> items = new ArrayList<>();
-		private String name;
-		
-		public RoomBuilder(String name) {
-
-
-			this.name = name;
-
-		}
-		public RoomBuilder addItem(Item item) {
-
-			items.add(item);
-			return this;
-
-		}
-		
-		public Room build() {
-
-			return new Room(this);
-
-		}	
-
-	} 
-
-
 }
