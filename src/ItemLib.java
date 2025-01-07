@@ -18,12 +18,6 @@ class ItemLib extends ArrayList<Item> {
 
 	}
 
-	public Item getItem(int i) {
-
-		return this.get(i);
-
-	}
-
 	public Item getItem(String name) {
 
 		for (Item item : this)

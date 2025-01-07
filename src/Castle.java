@@ -8,6 +8,12 @@ class Castle {
 		il = ItemLib.getInstance();
 		construct(module);
 
+	} 
+
+	public RoomTemplate getRoomTemplate() {
+
+		return template;
+
 	}
 
 	private void construct(Module module) {
@@ -15,8 +21,7 @@ class Castle {
 		switch(module) {
 
 		case Simple:
-			template = new RoomTemplate.TemplateBuilder().addRoom(new Room("thisroom", il.getItem(0), il.getItem(2))).addRoom(new Room("secondroom", il.getItem(0), il.getItem(1), il.getItem(2))).build();
-			template.get(0).printItems();
+			template = new RoomTemplate.TemplateBuilder().addRoom(new Room.RoomBuilder("thisroom", null).addItem(il.get(0)).addItem(il.get(2)).build()).addRoom(new Room.RoomBuilder("myroom", null).build()).build();
 			break;
 		case Understandable:
 			break;
