@@ -20,7 +20,7 @@ class HallScheme {
 	private Room accessAssigner() {
 		
 		Random rand = new Random();
-		int max = rooms.size();
+		int max = rooms.size() - 1;
 		int min = 0;
 		return rooms.get(rand.nextInt((max - min) + 1) + min);
 		
@@ -34,7 +34,11 @@ class HallScheme {
 		
 	}
 	
-	
+	public ArrayList<Room> getRooms() {
+		
+		return rooms;
+		
+	}
 	
 	public static class SchemeBuilder {
 		
@@ -44,6 +48,7 @@ class HallScheme {
 		
 		public SchemeBuilder(Hall hall, Hall nextHall, Room room) {
 			
+			rooms = new ArrayList<>();
 			this.hall = hall;
 			this.nextHall = nextHall;
 			this.rooms.add(room);
