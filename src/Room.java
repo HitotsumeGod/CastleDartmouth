@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-class Room extends Location {
+class Room {
 
 
 	private ArrayList<Item> items = new ArrayList<>();
@@ -12,8 +12,12 @@ class Room extends Location {
 	
 		this.items = builder.items;
 		this.name = builder.name;
-		this.connector = builder.connector;
-		this.connected = builder.connected;
+		if (builder.connector != null) {
+			this.connector = builder.connector;
+			
+		} else if (builder.connected != null) {
+			this.connected = builder.connected;
+		}
 
 	}
 
@@ -61,16 +65,18 @@ class Room extends Location {
 		private Hall connector = null;
 		private Room connected = null;
 
-		public RoomBuilder(String name, Location location) {
+		public RoomBuilder(String name, Hall location) {
 
 			this.name = name;
-			//brute-force location function; fix soon
-			try {
-				this.connector = location;
-			} catch (Exception e) {
-				this.connector = connected;
-			}
+			this.connector = location;
 
+		}
+		
+		public RoomBuilder(String name, Room location) {
+			
+			this.name = name;
+			this.connected = location;
+			
 		}
 
 		public RoomBuilder addItem(Item item) {

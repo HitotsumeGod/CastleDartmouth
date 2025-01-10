@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-class Hall extends Location {
+class Hall {
 
 	private ArrayList<Room> rooms = new ArrayList<>();
 	private Hall altHall = null;
