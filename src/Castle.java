@@ -29,7 +29,7 @@ class Castle {
 			Room r1 = new Room.RoomBuilder(null, hall).addItem(il.get(0)).addItem(il.get(1)).build();
 			Room r2 = new Room.RoomBuilder(null, hall).addItem(il.get(2)).addItem(il.get(1)).build();
 			Room r3 = new Room.RoomBuilder(null, hall).addItem(il.get(0)).addItem(il.get(1)).build();
-			HallScheme s1 = new HallScheme.SchemeBuilder(hall, altHall, r1).addRoom(r2).addRoom(r3).build();
+			HallScheme s1 = new HallScheme.SchemeBuilder(hall, null, r1).addRoom(r2).addRoom(r3).build();
 			schemes.add(s1);
 			break;
 		case Understandable:

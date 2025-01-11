@@ -40,6 +40,12 @@ class HallScheme {
 		
 	}
 	
+	public Hall getHall() {
+		
+		return hall;
+		
+	}
+	
 	public static class SchemeBuilder {
 		
 		private Hall hall;
