@@ -27,10 +27,9 @@ class Room {
 
 	}
 
-	public void printItems() {
+	public ArrayList<Item> getItems() {
 
-		for (Item item : items)
-			System.out.println(item.getName());
+		return items;
 
 	} 
 

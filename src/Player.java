@@ -37,7 +37,8 @@ class Player {
 		
 			System.out.println("You take a look around the room. There are some items here :");
 			System.out.println();
-			currentRoom.printItems();
+			for (Item i : getCurrentRoom().getItems())
+				System.out.println(i.getName());
 			System.out.println();
 			if (hasAdjacentHall())
 				System.out.println("There is a tall door to your right.");
@@ -72,15 +73,46 @@ class Player {
 		
 	}
 	
+	public void drop() {
+		
+		currentItem = null;
+		
+	}
+	
 	public Item getCurrentItem() {
 		
 		return currentItem;
 		
 	}
 	
+	public Room getCurrentRoom() {
+		
+		return currentRoom;
+		
+	}
+	
 	public Hall getHall() {
 		
 		return hall;
+		
+	}
+	
+	public void printActions(Item item) {
+		
+		if (item == null) {
+			
+			System.out.println("-----------   -----------   --------");
+			System.out.println("(P) PICK UP   (O) OBSERVE   (M) MOVE");
+			System.out.println("-----------   -----------   --------");
+			
+		} else {
+			
+			System.out.println("-------   --------");
+			System.out.println("(U) USE   (D) DROP");
+			System.out.println("-------   --------");
+			
+			
+		}
 		
 	}
 	
