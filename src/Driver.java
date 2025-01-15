@@ -20,13 +20,42 @@ public class Driver {
 		
 	}
 	
-	private static byte itemCycle() {
+	private static byte actionCycle() throws InterruptedException {
+		
+		while (true) {
+			
+			ans = scan.nextLine().charAt(0);
+			switch (ans) {
+			
+			case 'U':
+				Thread.sleep(1000);
+				me.getCurrentItem().Use();
+				Thread.sleep(500);
+				return 1;
+				
+			case 'D':
+				System.out.println("You dropped the " + me.getCurrentItem());
+				me.drop();
+				return 1;
+			default:
+				System.out.println("Improper input selection. Please refer to the action table and try again.");
+				Thread.sleep(1000);
+				me.printActions(actionCheck);
+			
+			}
+			
+		}
+		
+	}
+	
+	private static byte itemCycle() throws InterruptedException {
 		
 		while (true) {
 			
 			System.out.println("Which object would you like to pick up? (Enter full name and press ENTER)");
 			sans = scan.nextLine();
 			for (Item i : me.getCurrentRoom().getItems()) {
+				
 				if (sans.equals(i.getName())) {
 				
 					me.pickUp(i);
@@ -37,6 +66,7 @@ public class Driver {
 				} else {
 				
 					System.out.println("Item is not present in room. Please make sure you spelled the name correctly, and try again.");
+					Thread.sleep(1000);
 					me.observe();
 				
 				}
@@ -47,7 +77,7 @@ public class Driver {
 		
 	}
 	
-	private static byte roomCycle() {
+	private static byte roomCycle() throws InterruptedException {
 		
 
 		while (true) {
@@ -79,8 +109,10 @@ public class Driver {
 		
 		
 		System.out.println("Game start.");
+		while (true) {
 		Thread.sleep(2000);
-		me.observe();
+		if (err != 3)
+			me.observe();
 		do {
 			
 			err = 0;
@@ -91,9 +123,13 @@ public class Driver {
 			case 'P':
 				err = 1;
 				driver.itemCycle();
+				Thread.sleep(1000);
+				me.printActions(actionCheck);
+				if (actionCheck != null) 
+					driver.actionCycle();
 				break;
 			case 'O':
-				err = 1;
+				err = 3;
 				me.observe();
 				break;
 			case 'M':
@@ -107,7 +143,8 @@ public class Driver {
 			}
 		} while (err == 0);
 		
-		scan.close();
+		}
+		//scan.close();
 	}
 
 }
