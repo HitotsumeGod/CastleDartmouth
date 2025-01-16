@@ -18,15 +18,6 @@ class ItemLib extends ArrayList<Item> {
 
 	}
 
-	public Item getItem(String name) {
-
-		for (Item item : this)
-			if (item.getName().equals(name))
-				return item;		
-		return null;
-
-	} 
-
 	public static ItemLib getInstance() {
 
 		return instance;

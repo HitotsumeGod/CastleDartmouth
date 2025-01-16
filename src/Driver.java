@@ -74,7 +74,7 @@ public class Driver {
 		
 	}
 	
-	private static byte roomCycle() throws InterruptedException {
+	private static byte moveCycle() throws InterruptedException {
 		
 
 		while (true) {
@@ -92,7 +92,9 @@ public class Driver {
 			
 			case 'M':
 				err = 2;
+				System.out.println(me.getNextHall().getName());
 				castle.swapScheme(me.getNextHall());
+				me = new Player(castle.getCAS().getHall(), castle.getCAS().getNextHall(), castle.getCAS().getRooms());
 				return 0;
 			case 'H':
 				err = 2;
@@ -121,6 +123,7 @@ public class Driver {
 		do {
 			
 			err = 0;
+			actionCheck = null;
 			me.printActions(actionCheck);
 			ans = scan.nextLine().charAt(0);
 			switch (ans) {
@@ -138,7 +141,7 @@ public class Driver {
 				me.observe();
 				break;
 			case 'M':
-				driver.roomCycle();
+				driver.moveCycle();
 				err = 1;
 				break;
 			default:

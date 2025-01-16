@@ -15,7 +15,7 @@ class Castle {
 		Random rand = new Random();
 		int max = schemes.size() - 1;
 		int min = 0;
-		currentActiveScheme = schemes.get(rand.nextInt((max - min) + 1) + min);
+		currentActiveScheme = schemes.getFirst();              //(rand.nextInt((max - min) + 1) + min);
 
 	} 
 
@@ -24,13 +24,18 @@ class Castle {
 		switch(module) {
 
 		case Simple:
-			Hall hall = new Hall();
-			Hall altHall = new Hall();
+			Hall hall = new Hall("hall");
+			Hall altHall = new Hall("like kys fella");
 			Room r1 = new Room.RoomBuilder(null, hall).addItem(il.get(0)).addItem(il.get(1)).addItem(il.get(2)).build();
 			Room r2 = new Room.RoomBuilder(null, hall).addItem(il.get(2)).addItem(il.get(1)).build();
 			Room r3 = new Room.RoomBuilder(null, hall).addItem(il.get(0)).addItem(il.get(1)).build();
-			HallScheme s1 = new HallScheme.SchemeBuilder(hall, null, r1).addRoom(r2).addRoom(r3).build();
-			schemes.add(s1);
+			schemes.add(new HallScheme.SchemeBuilder(hall, altHall, r1).addRoom(r2).addRoom(r3).build());
+			hall = altHall.getInstance();
+			altHall = new Hall("Thissa hall");
+			r1 = new Room.RoomBuilder(null, hall).build();
+			r2 = new Room.RoomBuilder(null, hall).addItem(il.get(1)).build();
+			schemes.add(new HallScheme.SchemeBuilder(hall, altHall, r1).addRoom(r2).build());
+			
 			break;
 		case Understandable:
 			break;

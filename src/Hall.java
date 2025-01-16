@@ -4,8 +4,11 @@ class Hall {
 
 	private ArrayList<Room> rooms = new ArrayList<>();
 	private Hall altHall = null;
+	private final String name;
 
-	Hall() {
+	Hall(String name) {
+		
+		this.name = name;
 	
 	}
 
@@ -19,6 +22,18 @@ class Hall {
 
 		return altHall;
 
+	}
+	
+	public String getName() {
+		
+		return name;
+		
+	}
+	
+	public Hall getInstance() {
+		
+		return this;
+		
 	}
 
 }
