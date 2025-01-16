@@ -46,6 +46,12 @@ class HallScheme {
 		
 	}
 	
+	public Hall getNextHall() {
+		
+		return nextHall;
+		
+	}
+	
 	public static class SchemeBuilder {
 		
 		private Hall hall;

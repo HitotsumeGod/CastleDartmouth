@@ -14,7 +14,7 @@ public class Driver {
 	public Driver() {
 		
 		castle = new Castle(Module.Simple);
-		me = new Player(castle.getCAS().getHall(), castle.getCAS().getRooms());
+		me = new Player(castle.getCAS().getHall(), castle.getCAS().getNextHall(), castle.getCAS().getRooms());
 		scan = new Scanner(System.in);
 		actionCheck = null;
 		
@@ -34,7 +34,7 @@ public class Driver {
 				return 1;
 				
 			case 'D':
-				System.out.println("You dropped the " + me.getCurrentItem());
+				System.out.println("You dropped the " + me.getCurrentItem().getName());
 				me.drop();
 				return 1;
 			default:
@@ -63,15 +63,12 @@ public class Driver {
 					System.out.println("You picked up " + i.getName() + "!");
 					return 1;
 				
-				} else {
-				
-					System.out.println("Item is not present in room. Please make sure you spelled the name correctly, and try again.");
-					Thread.sleep(1000);
-					me.observe();
-				
-				}
+				} 
 				
 			}
+			System.out.println("Item is not present in room. Please make sure you spelled the name correctly, and try again.");
+			Thread.sleep(1000);
+			me.observe();
 
 		}
 		
@@ -82,13 +79,21 @@ public class Driver {
 
 		while (true) {
 			err = 1;
+			if (me.getCurrentRoom() == null) {
+				System.out.println("There is a fearsome door at the far end of the hall. Press M to move through it.");
+			} else {
 			if (me.getCurrentRoom().getConnectedHall() != null)
 				System.out.println("This room has a tall, archlike doorway. Press H to move through it.");
 			if (me.getCurrentRoom().getConnectedRoom() != null)
 				System.out.println("This room also has a shorter, stubbier doorway. Press D to move through it.");
+			}
 			ans = scan.nextLine().charAt(0);
 			switch (ans) {
 			
+			case 'M':
+				err = 2;
+				castle.swapScheme(me.getNextHall());
+				return 0;
 			case 'H':
 				err = 2;
 				me.move(me.getCurrentRoom().getConnectedHall());

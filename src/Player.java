@@ -3,13 +3,15 @@ import java.util.ArrayList;
 class Player {
 	
 	private Hall hall;
+	private Hall nextHall;
 	private ArrayList<Room> rooms;
 	private Room currentRoom;
 	private Item currentItem;
 	
-	Player(Hall hall, ArrayList<Room> rooms) {
+	Player(Hall hall, Hall nextHall, ArrayList<Room> rooms) {
 		
 		this.hall = hall;
+		this.nextHall = nextHall;
 		this.rooms = rooms;
 		currentRoom = rooms.getFirst();
 		
@@ -94,6 +96,12 @@ class Player {
 	public Hall getHall() {
 		
 		return hall;
+		
+	}
+	
+	public Hall getNextHall() {
+		
+		return nextHall;
 		
 	}
 	

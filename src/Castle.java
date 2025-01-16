@@ -26,7 +26,7 @@ class Castle {
 		case Simple:
 			Hall hall = new Hall();
 			Hall altHall = new Hall();
-			Room r1 = new Room.RoomBuilder(null, hall).addItem(il.get(0)).addItem(il.get(1)).build();
+			Room r1 = new Room.RoomBuilder(null, hall).addItem(il.get(0)).addItem(il.get(1)).addItem(il.get(2)).build();
 			Room r2 = new Room.RoomBuilder(null, hall).addItem(il.get(2)).addItem(il.get(1)).build();
 			Room r3 = new Room.RoomBuilder(null, hall).addItem(il.get(0)).addItem(il.get(1)).build();
 			HallScheme s1 = new HallScheme.SchemeBuilder(hall, null, r1).addRoom(r2).addRoom(r3).build();
@@ -39,6 +39,14 @@ class Castle {
 
 		}
 
+	}
+	
+	public void swapScheme(Hall hall) {
+		
+		for (HallScheme hs : schemes) 
+			if (hs.getHall().equals(hall))
+				currentActiveScheme = hs;
+		
 	}
 	
 	public HallScheme getCAS() {
