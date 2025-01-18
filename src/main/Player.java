@@ -5,16 +5,16 @@ class Player {
 	
 	private Hall hall;
 	private Hall nextHall;
-	private ArrayList<Room> rooms;
+	private Room[] rooms;
 	private Room currentRoom;
 	private Item currentItem;
 	
-	Player(Hall hall, Hall nextHall, ArrayList<Room> rooms) {
+	Player(Hall hall, Hall nextHall, Room[] rooms) {
 		
 		this.hall = hall;
 		this.nextHall = nextHall;
 		this.rooms = rooms;
-		currentRoom = rooms.getFirst();
+		currentRoom = rooms[0];
 		
 	}
 	
@@ -50,7 +50,7 @@ class Player {
 		
 		} else {
 			
-			System.out.println("You take a look around the hallway. It's just as drab as all the rooms, and there are " + (rooms.size() - 1) + " doors that you can see.");
+			System.out.println("You take a look around the hallway. It's just as drab as all the rooms, and there are " + (rooms.length - 1) + " doors that you can see.");
 			System.out.println("At the far end of the hall, you can just barely make out another tall, arching doorway.");
 			
 		}
