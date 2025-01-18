@@ -1,1 +1,7 @@
+<<<<<<< HEAD
+=======
+*.class
+*.*~
+.*.*~
+>>>>>>> refs/heads/entropic
 /bin/
