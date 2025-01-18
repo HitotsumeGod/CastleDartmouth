@@ -1,5 +1,9 @@
+package main;
 import java.util.ArrayList;
 import java.util.Random;
+
+import main.HallScheme.SchemeBuilder;
+import main.Room.RoomBuilder;
 
 class Castle {
 	
