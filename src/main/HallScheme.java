@@ -1,3 +1,4 @@
+package main;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -8,11 +9,11 @@ class HallScheme {
 	private ArrayList<Room> rooms;
 	private Room accessRoom;
 	
-	private HallScheme(SchemeBuilder builder) {
+	public HallScheme(Hall hall, Hall nextHall, ArrayList<Room> rooms, Room accessRoom) {
 		
-		this.hall = builder.hall;
-		this.nextHall = builder.nextHall;
-		this.rooms = builder.rooms;
+		this.hall = hall;
+		this.nextHall = nextHall;
+		this.rooms = rooms;
 		this.accessRoom = accessAssigner();
 		
 	}
@@ -50,36 +51,6 @@ class HallScheme {
 		
 		return nextHall;
 		
-	}
-	
-	public static class SchemeBuilder {
-		
-		private Hall hall;
-		private Hall nextHall;
-		private ArrayList<Room> rooms;
-		
-		public SchemeBuilder(Hall hall, Hall nextHall, Room room) {
-			
-			rooms = new ArrayList<>();
-			this.hall = hall;
-			this.nextHall = nextHall;
-			this.rooms.add(room);
-			
-		}
-		
-		public SchemeBuilder addRoom(Room room) {
-			
-			this.rooms.add(room);
-			return this;
-			
-		}
-		
-		public HallScheme build() {
-			
-			return new HallScheme(this);
-			
-		}
-
 	}
 
 }

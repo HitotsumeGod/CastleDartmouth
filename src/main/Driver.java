@@ -1,3 +1,4 @@
+package main;
 import java.util.Scanner;
 
 public class Driver {
@@ -13,7 +14,7 @@ public class Driver {
 	
 	public Driver() {
 		
-		castle = new Castle(Module.Simple);
+		castle = new Castle(4);
 		me = new Player(castle.getCAS().getHall(), castle.getCAS().getNextHall(), castle.getCAS().getRooms());
 		scan = new Scanner(System.in);
 		actionCheck = null;

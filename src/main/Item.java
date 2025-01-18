@@ -1,3 +1,4 @@
+package main;
 class Item implements Actionable {
 
 	private final String name;
