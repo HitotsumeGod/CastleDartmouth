@@ -14,9 +14,8 @@ public class Driver {
 	
 	public Driver() {
 		
+		Castle castle = new Castle(4);
 		scan = new Scanner(System.in);
-		castle = new Castle(scan.nextInt());
-		scan = new Scanner(System.in); //unless this is here, the above line will break the scanner
 		me = new Player(castle.getCAS().getHall(), castle.getCAS().getNextHall(), castle.getCAS().getRooms());
 		actionCheck = null;
 		

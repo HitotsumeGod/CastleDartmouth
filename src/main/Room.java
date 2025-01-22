@@ -11,12 +11,10 @@ class Room {
 	public Room(String name, Hall connector, Room connected) {
 	
 		this.name = name;
-		if (connector != null) {
+		if (connector != null) 
 			this.connector = connector;
-			
-		} else if (connected != null) {
+		if (connected != null) 
 			this.connected = connected;
-		}
 
 	}
 	

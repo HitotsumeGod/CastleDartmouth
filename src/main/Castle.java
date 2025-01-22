@@ -24,7 +24,7 @@ class Castle {
 		switch(num) {
 
 		case 4:
-			Room tt = new Room(null, null, null);
+			Room tt = new Room("KING", null, null);
 			schemes = new HallScheme[num];
 			HallScheme[] tempSchemes = schemes;
 			Hall[] tempHalls = new Hall[num];
