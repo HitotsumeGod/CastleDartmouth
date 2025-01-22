@@ -9,12 +9,12 @@ public class Driver {
 	private static Scanner scan;
 	private static Item actionCheck;
 	private static String sans;
-	private static char ans;
-	private static int err;
+	private static char ans; //utilized as mutable variable to hold player input for various questions
+	private static int err; //utilized as a mutable variable to control termination of while loops
 	
 	public Driver() {
 		
-		Castle castle = new Castle(4);
+		castle = new Castle(4);
 		scan = new Scanner(System.in);
 		me = new Player(castle.getCAS().getHall(), castle.getCAS().getNextHall(), castle.getCAS().getRooms());
 		actionCheck = null;
@@ -35,8 +35,7 @@ public class Driver {
 				return 1;
 				
 			case 'D':
-				System.out.println("You dropped the " + me.getCurrentItem().getName());
-				me.drop();
+				me.drop(me);
 				return 1;
 			default:
 				System.out.println("Improper input selection. Please refer to the action table and try again.");
@@ -54,20 +53,21 @@ public class Driver {
 		while (true) {
 			
 			System.out.println("Which object would you like to pick up? (Enter full name and press ENTER)");
-			sans = scan.nextLine();
+			try {
+				sans = scan.nextLine();
+			} catch (NullPointerException n) {}
 			for (Item i : me.getCurrentRoom().getItems()) {
 				
 				if (sans.equals(i.getName())) {
 				
 					me.pickUp(i);
 					actionCheck = i;
-					System.out.println("You picked up " + i.getName() + "!");
 					return 1;
 				
 				} 
 				
 			}
-			System.out.println("Item is not present in room. Please make sure you spelled the name correctly, and try again.");
+			System.out.println("Item is not present in room/hall. Please make sure you spelled the name correctly, and try again.");
 			Thread.sleep(1000);
 			me.observe();
 
@@ -88,7 +88,11 @@ public class Driver {
 			if (me.getCurrentRoom().getConnectedRoom() != null)
 				System.out.println("This room also has a shorter, stubbier doorway. Press D to move through it.");
 			}
-			ans = scan.nextLine().charAt(0);
+			try {
+				ans = scan.nextLine().charAt(0);
+			} catch (StringIndexOutOfBoundsException e) {
+				ans = 'Z';
+			}
 			switch (ans) {
 			
 			case 'M':
@@ -152,7 +156,6 @@ public class Driver {
 		} while (err == 0);
 		
 		}
-		//scan.close();
 	}
 
 }

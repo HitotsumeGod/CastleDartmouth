@@ -24,7 +24,6 @@ class Castle {
 		switch(num) {
 
 		case 4:
-			Room tt = new Room("KING", null, null);
 			schemes = new HallScheme[num];
 			HallScheme[] tempSchemes = schemes;
 			Hall[] tempHalls = new Hall[num];
@@ -43,7 +42,11 @@ class Castle {
 					Item[] tempItems = new Item[numItems];
 					for (int i3 = 0; i3 < numItems; i3++) 
 						tempItems[i3] = il.get(rand.nextInt(il.size() - 1));
-					tempRooms[i2] = new Room(null, tempHalls[i], tt);
+					try {
+						tempRooms[i2] = new Room(null, tempHalls[i], tempRooms[i2 - 1]);
+					} catch (ArrayIndexOutOfBoundsException e) {
+						tempRooms[i2] = new Room(null, tempHalls[i], null);
+					}
 					for (Item it : tempItems)
 						tempRooms[i2].addItem(it);
 				

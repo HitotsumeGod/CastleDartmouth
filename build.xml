@@ -1,0 +1,32 @@
+<project name="Castle Dartmouth" default="quick">
+
+	<property name="input" location="src"/>
+	<property name="output" location="classes"/>
+	<property name="jars" location="jar"/>
+	
+	<target name="clean">
+		<delete dir="${output}"/>
+		<delete dir="${jars}"/>
+		<echo message="Project cleaned and ready for reactivation!"/>
+	</target>
+	
+	<target name="compile">
+		<mkdir dir="${output}"/>
+		<mkdir dir="${jars}"/>
+		<javac srcdir="${input}" destdir="${output}"/>
+		<jar destfile="${jars}/CastleDartmouth.jar" basedir="${output}">
+			<manifest>
+				<attribute name="Main-Class" value="main.Driver"/>
+			</manifest>
+		</jar>
+	</target>
+	
+	<target name="run">
+		<java jar="${jars}/CastleDartmouth.jar" fork="true"/>
+	</target>
+	
+	<target name="quick" depends="compile, run">
+		<echo message="Running quickstart..."/>
+	</target>
+	
+</project>

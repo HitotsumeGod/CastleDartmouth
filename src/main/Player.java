@@ -76,11 +76,13 @@ class Player {
 		
 		currentRoom.removeItem(item);
 		currentItem = item;
+		System.out.println("You picked up " + item.getName() + "!");
 		
 	}
 	
-	public void drop() {
+	public void drop(Player me) {
 		
+		System.out.println("You dropped the " + me.getCurrentItem().getName() + ".");
 		currentRoom.addItem(currentItem);
 		currentItem = null;
 		
