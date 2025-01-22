@@ -1,5 +1,6 @@
 package main;
-import java.util.ArrayList;
+
+import java.util.Random;
 
 class Player {
 	
@@ -8,13 +9,14 @@ class Player {
 	private Room[] rooms;
 	private Room currentRoom;
 	private Item currentItem;
+	private Random rand = new Random();
 	
 	Player(Hall hall, Hall nextHall, Room[] rooms) {
 		
 		this.hall = hall;
 		this.nextHall = nextHall;
 		this.rooms = rooms;
-		currentRoom = rooms[0];
+		currentRoom = rooms[rand.nextInt(rooms.length)];
 		
 	}
 	
@@ -72,12 +74,14 @@ class Player {
 	
 	public void pickUp(Item item) {
 		
+		currentRoom.removeItem(item);
 		currentItem = item;
 		
 	}
 	
 	public void drop() {
 		
+		currentRoom.addItem(currentItem);
 		currentItem = null;
 		
 	}

@@ -3,7 +3,6 @@ import java.util.ArrayList;
 
 class Room {
 
-
 	private ArrayList<Item> items = new ArrayList<>();
 	private String name = null;
 	private Hall connector = null;
@@ -24,6 +23,12 @@ class Room {
 	public void addItem (Item item) {
 		
 		items.add(item);
+		
+	}
+	
+	public void removeItem(Item item) {
+		
+		items.remove(item);
 		
 	}
 

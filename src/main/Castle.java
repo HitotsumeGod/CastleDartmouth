@@ -24,12 +24,14 @@ class Castle {
 		switch(num) {
 
 		case 4:
+			Room tt = new Room(null, null, null);
 			schemes = new HallScheme[num];
 			HallScheme[] tempSchemes = schemes;
 			Hall[] tempHalls = new Hall[num];
 			for (int i = 0; i < num; i++) {
 				
 				//for each hallscheme in the array, generates a room array (size randomized)
+				tempHalls[i] = new Hall(null);
 				max = 5;
 				min = 1;
 				int numRooms = rand.nextInt((max - min) + 1) + min;
@@ -41,13 +43,12 @@ class Castle {
 					Item[] tempItems = new Item[numItems];
 					for (int i3 = 0; i3 < numItems; i3++) 
 						tempItems[i3] = il.get(rand.nextInt(il.size() - 1));
-					tempRooms[i2] = new Room(null, null, null);
+					tempRooms[i2] = new Room(null, tempHalls[i], tt);
 					for (Item it : tempItems)
 						tempRooms[i2].addItem(it);
 				
 				}
 				//at this point, tempRooms is an array of numRooms size filled with fully functional rooms
-				tempHalls[i] = new Hall(null);
 				try {
 				tempSchemes[i] = new HallScheme(tempHalls[i], tempHalls[i + 1], tempRooms);
 				} catch (ArrayIndexOutOfBoundsException e) {
@@ -58,6 +59,12 @@ class Castle {
 			schemes = tempSchemes;
 			break;
 		case 12:
+			Hall ok = new Hall(null);
+			Hall tok = new Hall(null);
+			Room one = new Room(null, null, null);
+			Room two = new Room(null, null, one);
+			HallScheme hell = new HallScheme(ok, tok, new Room[] {two, one});
+			schemes = new HallScheme[] {hell};
 			break;
 		case 36:
 			break;
